@@ -58,4 +58,9 @@ public class ProdukBakery {
     public boolean cari(double harga) {
         return this.harga == harga;
     }
+    public void prosesProduk(ProdukBakery produk) {
+    System.out.println("Memproses produk: " + produk.getNama());
+    System.out.println("Harga: Rp" + produk.getHarga());
+    System.out.println("Stok: " + produk.getStok());
+}
 }

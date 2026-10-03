@@ -11,8 +11,9 @@ public class Main {
         daftarProduk[0] = new Roti("Roti Cokelat", 8000, 10, "Cokelat");
         daftarProduk[1] = new Donat("Donat Keju", 7000, 15, "Keju");
         daftarProduk[2] = new Kue("Brownies", 25000, 5, "Sedang");
+        daftarProduk[3] = new Croissant("Croissant Cokelat", 12000, 8, "Cokelat");
 
-        int jumlah = 3;
+        int jumlah = 4;
         int pilihan;
 
         while (true) {
@@ -22,7 +23,8 @@ public class Main {
             System.out.println("2. Cari Produk");
             System.out.println("3. Tambah Produk");
             System.out.println("4. Jumlah Produk");
-            System.out.println("5. Keluar");
+            System.out.println("5. Simulasi Produk");
+            System.out.println("6. Keluar");
             System.out.print("Pilih menu: ");
 
             pilihan = input.nextInt();
@@ -38,16 +40,42 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.print("Masukkan nama produk: ");
-                    String namaCari = input.nextLine();
+                    System.out.println("\n=== CARI PRODUK ===");
+                    System.out.println("1. Cari berdasarkan nama");
+                    System.out.println("2. Cari berdasarkan harga");
+                    System.out.print("Pilih: ");
+
+                    int jenisCari = input.nextInt();
+                    input.nextLine();
 
                     boolean ditemukan = false;
 
-                    for (int i = 0; i < jumlah; i++) {
-                        if (daftarProduk[i].cari(namaCari)) {
-                            daftarProduk[i].tampilkanInfo();
-                            ditemukan = true;
+                    if (jenisCari == 1) {
+                        System.out.print("Masukkan nama produk: ");
+                        String namaCari = input.nextLine();
+
+                        for (int i = 0; i < jumlah; i++) {
+                            if (daftarProduk[i].cari(namaCari)) {
+                                daftarProduk[i].tampilkanInfo();
+                                ditemukan = true;
+                            }
                         }
+
+                    } else if (jenisCari == 2) {
+                        System.out.print("Masukkan harga produk: ");
+                        double hargaCari = input.nextDouble();
+                        input.nextLine();
+
+                        for (int i = 0; i < jumlah; i++) {
+                            if (daftarProduk[i].cari(hargaCari)) {
+                                daftarProduk[i].tampilkanInfo();
+                                ditemukan = true;
+                            }
+                        }
+
+                    } else {
+                        System.out.println("Pilihan tidak tersedia.");
+                        break;
                     }
 
                     if (!ditemukan) {
@@ -61,9 +89,11 @@ public class Main {
                         break;
                     }
 
-                    System.out.println("\n1. Roti");
+                    System.out.println("\n=== TAMBAH PRODUK ===");
+                    System.out.println("1. Roti");
                     System.out.println("2. Donat");
                     System.out.println("3. Kue");
+                    System.out.println("4. Croissant");
                     System.out.print("Pilih jenis: ");
 
                     int jenis = input.nextInt();
@@ -80,6 +110,7 @@ public class Main {
                     input.nextLine();
 
                     if (jenis == 1) {
+
                         System.out.print("Rasa: ");
                         String rasa = input.nextLine();
 
@@ -89,6 +120,7 @@ public class Main {
                         jumlah++;
 
                     } else if (jenis == 2) {
+
                         System.out.print("Topping: ");
                         String topping = input.nextLine();
 
@@ -98,11 +130,22 @@ public class Main {
                         jumlah++;
 
                     } else if (jenis == 3) {
+
                         System.out.print("Ukuran: ");
                         String ukuran = input.nextLine();
 
                         daftarProduk[jumlah] =
                                 new Kue(nama, harga, stok, ukuran);
+
+                        jumlah++;
+
+                    } else if (jenis == 4) {
+
+                        System.out.print("Isian: ");
+                        String isian = input.nextLine();
+
+                        daftarProduk[jumlah] =
+                                new Croissant(nama, harga, stok, isian);
 
                         jumlah++;
 
@@ -118,6 +161,22 @@ public class Main {
                     break;
 
                 case 5:
+                    System.out.println("\n=== SIMULASI PRODUK ===");
+                    System.out.print("Pilih nomor produk (1-" + jumlah + "): ");
+
+                    int nomor = input.nextInt();
+                    input.nextLine();
+
+                    if (nomor >= 1 && nomor <= jumlah) {
+                        daftarProduk[nomor - 1]
+                                .prosesProduk(daftarProduk[nomor - 1]);
+                    } else {
+                        System.out.println("Nomor produk tidak tersedia.");
+                    }
+
+                    break;
+
+                case 6:
                     System.out.println("Program selesai.");
                     input.close();
                     return;
