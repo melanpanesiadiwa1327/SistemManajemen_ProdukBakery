@@ -1,8 +1,10 @@
-public class ProdukBakery {
+package com;
+
+public abstract class ProdukBakery {
     
-    private String nama;
-    private double harga;
-    private int stok;
+    protected String nama;
+    protected double harga;
+    protected int stok;
 
     private static int jumlahProduk = 0;
 
@@ -58,9 +60,12 @@ public class ProdukBakery {
     public boolean cari(double harga) {
         return this.harga == harga;
     }
+
     public void prosesProduk(ProdukBakery produk) {
-    System.out.println("Memproses produk: " + produk.getNama());
-    System.out.println("Harga: Rp" + produk.getHarga());
-    System.out.println("Stok: " + produk.getStok());
-}
+        System.out.println("Memproses produk: " + produk.getNama());
+        System.out.println("Harga: Rp" + produk.getHarga());
+        System.out.println("Stok: " + produk.getStok());
+    }
+
+    public abstract void hitungMasaKadaluarsa();
 }

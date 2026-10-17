@@ -1,3 +1,5 @@
+package com;
+
 import java.util.Scanner;
 
 public class Main {
@@ -36,6 +38,18 @@ public class Main {
                     for (int i = 0; i < jumlah; i++) {
                         System.out.println("\nProduk ke-" + (i + 1));
                         daftarProduk[i].tampilkanInfo();
+
+                        daftarProduk[i].hitungMasaKadaluarsa();
+
+                        if (daftarProduk[i] instanceof DapatDiskon) {
+                            DapatDiskon itemDiskon = (DapatDiskon) daftarProduk[i];
+                            itemDiskon.terapkanDiskon(10);
+                        }
+
+                        if (daftarProduk[i] instanceof DapatDipesan) {
+                            DapatDipesan itemPesan = (DapatDipesan) daftarProduk[i];
+                            itemPesan.prosesPesanan(5);
+                        }
                     }
                     break;
 

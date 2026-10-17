@@ -1,4 +1,6 @@
-public class Croissant extends ProdukBakery {
+package com;
+
+public class Croissant extends ProdukBakery implements DapatDipesan {
 
     private String isian;
 
@@ -20,5 +22,15 @@ public class Croissant extends ProdukBakery {
         System.out.println("Jenis  : Croissant");
         super.tampilkanInfo();
         System.out.println("Isian  : " + isian);
+    }
+
+    @Override
+    public void hitungMasaKadaluarsa() {
+        System.out.println("-> Masa Kadaluarsa: 3 hari agar renyah.");
+    }
+
+    @Override
+    public void prosesPesanan(int jumlah) {
+        System.out.println("-> [PESANAN] Memproses pesanan khusus " + jumlah + " pcs croissant.");
     }
 }

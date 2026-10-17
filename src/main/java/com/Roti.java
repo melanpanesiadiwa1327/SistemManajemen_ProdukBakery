@@ -1,4 +1,6 @@
-public class Roti extends ProdukBakery {
+package com;
+
+public class Roti extends ProdukBakery implements DapatDiskon {
 
     private String rasa;
 
@@ -20,5 +22,16 @@ public class Roti extends ProdukBakery {
         System.out.println("Jenis : Roti");
         super.tampilkanInfo();
         System.out.println("Rasa  : " + rasa);
+    }
+
+    @Override
+    public void hitungMasaKadaluarsa() {
+        System.out.println("-> Masa Kadaluarsa: 5 hari di suhu ruang.");
+    }
+
+    @Override
+    public void terapkanDiskon(double persentase) {
+        this.harga -= (this.harga * (persentase / 100));
+        System.out.println("-> [DISKON] Diskon " + persentase + "% diterapkan. Harga baru: Rp" + this.harga);
     }
 }

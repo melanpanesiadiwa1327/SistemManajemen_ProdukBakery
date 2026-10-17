@@ -1,3 +1,5 @@
+package com;
+
 public class Kue extends ProdukBakery {
 
     private String ukuran;
@@ -20,5 +22,10 @@ public class Kue extends ProdukBakery {
         System.out.println("Jenis  : Kue");
         super.tampilkanInfo();
         System.out.println("Ukuran : " + ukuran);
+    }
+
+    @Override
+    public void hitungMasaKadaluarsa() {
+        System.out.println("-> Masa Kadaluarsa: 7 hari jika dimasukkan kulkas.");
     }
 }
